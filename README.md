@@ -1,6 +1,6 @@
 # singularity-pandoc
 
-Singularity recipe for [pandoca](https://pandoc.org/).
+Singularity recipe for [pandoc](https://pandoc.org/).
 
 ## Building the image using the recipe
 
