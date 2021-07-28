@@ -13,7 +13,7 @@ Copy the
 * `SIF` file
 * and the `pandoc` script
 
-to `/opt/packages/bismark/2.2.1`
+to `/opt/packages/pandoc/2.2.1`
 
 Copy the file `modulefile.lua` to `/opt/modulefiles/pandoc` as `2.2.1.lua`.
 
