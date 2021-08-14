@@ -1,4 +1,5 @@
 ![Status](https://github.com/pscedu/singularity-pandoc/actions/workflows/main.yml/badge.svg)
+![Status](https://github.com/pscedu/singularity-pandoc/actions/workflows/pretty.yml/badge.svg)
 ![Issue](https://img.shields.io/github/issues/pscedu/singularity-pandoc)
 ![forks](https://img.shields.io/github/forks/pscedu/singularity-pandoc)
 ![Stars](https://img.shields.io/github/stars/pscedu/singularity-pandoc)
