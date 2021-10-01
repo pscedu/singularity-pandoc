@@ -5,9 +5,14 @@ PACKAGE=pandoc
 TOOL=pandoc
 DIRECTORY=$(dirname $0)
 
-PERSISTENT_FILE_STORAGE=/ocean
-if [ ! -d $PERSISTENT_FILE_STORAGE ]; then
-	singularity exec $DIRECTORY/singularity-$PACKAGE-$VERSION.sif $TOOL "$@"
-else
-	singularity exec -B $PERSISTENT_FILE_STORAGE $DIRECTORY/singularity-$PACKAGE-$VERSION.sif $TOOL "$@"
-fi
+STORAGES=(/ocean /bil /hive /local)
+
+OPTIONS=""
+for STORAGE in "${STORAGES[@]}"
+do
+  	if [ -d "$STORAGE" ]; then
+                OPTIONS=$OPTIONS" -B $STORAGE"
+        fi
+done
+
+singularity exec $OPTIONS $DIRECTORY/singularity-$PACKAGE-$VERSION.sif $TOOL "$@"
