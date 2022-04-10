@@ -2,7 +2,7 @@
 
 VERSION=2.18
 PACKAGE=pandoc
-TOOL=pandoc
+TOOL=hyperxmp-add-bytecount
 DIRECTORY=$(dirname $0)
 
 PERSISTENT_FILE_STORAGE=/ocean

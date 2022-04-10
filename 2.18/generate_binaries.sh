@@ -1,0 +1,56 @@
+#!/bin/bash
+
+TOOLS=(afm2tfm                 kpsereadlink            pdftex
+biber                   kpsestat                pktogf
+bibtex                  kpsewhich               pktype
+dvilualatex             latex                   rungs
+dviluatex               luahbtex                simpdftex
+dvipdfm                 lualatex                teckit_compile
+dvipdfmx                luaotfload-tool         tex
+dvipdft                 luatex                  texhash
+dvips                   makeindex               texlua
+ebb                     man                     texluac
+etex                    mf                      tlmgr
+extractbb               mf-nowin                tlshell
+fmtutil                 mft                     updmap
+fmtutil-sys             mkindex                 updmap-sys
+fmtutil-user            mktexfmt                updmap-user
+gftodvi                 mktexlsr                xdvi
+gftopk                  mktexmf                 xdvi-xaw
+gftype                  mktexpk                 xdvipdfmx
+hyperxmp-add-bytecount  mktextfm                xelatex
+inimf                   mptopdf                 xelatex-unsafe
+initex                  pdfetex                 xetex
+kpseaccess              pdflatex                xetex-unsafe
+pandoc)
+
+cat << EOF > template
+#!/bin/bash
+
+VERSION=2.18
+PACKAGE=pandoc
+TOOL=TOOL_NAME
+DIRECTORY=\$(dirname \$0)
+
+PERSISTENT_FILE_STORAGE=/ocean
+if [ -d \$PERSISTENT_FILE_STORAGE ]; then
+	OPTIONS="-B \$PERSISTENT_FILE_STORAGE"
+fi
+
+if [ -d /local ]; then
+	OPTIONS=\$OPTIONS" -B /local"
+fi
+
+singularity exec \$OPTIONS \$DIRECTORY/singularity-\$PACKAGE-\$VERSION.sif \$TOOL "\$@"
+EOF
+
+for TOOL in "${TOOLS[@]}"
+do
+	echo "* "$TOOL
+        cp template $TOOL
+	sed -i "s/TOOL_NAME/$TOOL/g" $TOOL
+	chmod +x $TOOL
+        git add $TOOL
+done
+
+rm -f template
