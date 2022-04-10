@@ -8,7 +8,7 @@
 
 whatis("Name: pandoc")
 whatis("Version: 2.18")
-whatis("Category: Biological Sciences")
+whatis("Category: Other")
 whatis("URL: https://www.psc.edu/resources/software")
 whatis("open-source document converter, widely used as a writing tool and as a basis for publishing workflows. ")
 
